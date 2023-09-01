@@ -1,0 +1,15 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      View Favourites
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <mat-card class="matCard">
+    <mat-card-content>
+      <p *ngFor="let item of favArray"> {{item}}</p>
+    </mat-card-content>
+  </mat-card>
+</ion-content>

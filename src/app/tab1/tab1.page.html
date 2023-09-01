@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Home Page
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Currency</mat-label>
+      <input type="text" placeholder="Choose Currency" aria-label="Number" matInput [formControl]="baseCurrency"
+        [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
+        (optionSelected)='getBaseCurrency($event.option.value)'>
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+  <mat-card *ngIf="baseCurrencyValue" class="matCard">
+    <mat-card-header>
+      <mat-card-title>Exchange rates for {{baseCurrencyValue}} currency</mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngFor="let item of exchangeRateArray"
+      (click)="goToCurrencyDetail(item)"><div [ngClass]="{'favourites': item[2]!=0}"> {{item[0]}} - {{item[1]}}</div></mat-card-content>
+  </mat-card>
+</ion-content>
